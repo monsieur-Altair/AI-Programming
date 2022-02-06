@@ -22,9 +22,9 @@ namespace Behaviours
             return new Steering();
         }
 
-        public void SetTarget(GameObject target)
+        public void SetTarget(GameObject newTarget)
         {
-            this.target = target;
+            target = newTarget;
         }
     }
 }

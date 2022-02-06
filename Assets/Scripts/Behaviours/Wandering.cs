@@ -34,18 +34,10 @@ namespace Behaviours
             var randomZ = Random.Range(-maxSearchRadius, maxSearchRadius);
             var targetPosition = new Vector3(randomX, 0.0f, randomZ).normalized*wanderingDistance;
             target.transform.position = new Vector3(targetPosition.x, position.y, targetPosition.z);
-            Debug.Log(target.transform.position);
+//            Debug.Log(target.transform.position);
             base.GetSteering();
             return _arriveAlgorithm.GetSteering();
         }
 
-        /*private Steering SeekTarget()
-        {
-            var steering = base.GetSteering(); 
-            steering.linear = target.transform.position - Transform.position; 
-            steering.linear.Normalize(); 
-            steering.linear *= agent.maxAccel;
-            return steering;
-        }*/
     }
 }
