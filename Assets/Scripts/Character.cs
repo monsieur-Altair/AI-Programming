@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -8,8 +10,14 @@ public class Character : MonoBehaviour
     private Vector3 _destination;
     private float _yPos;
     [SerializeField] private float speed;
-    [SerializeField] float MaxSlowRadius = 7.5f;
+    [SerializeField] float slowRadius = 7.5f;
+    [SerializeField] float stopRadius = 0.3f;
+    [SerializeField] float minAngle = 3f;
+    [SerializeField] float angularSpeed = 180f;
     private float _speedCoefficient;
+    private float _clockwise = 1.0f;
+    
+    
 
         private void Awake()
     {
@@ -28,16 +36,28 @@ public class Character : MonoBehaviour
             {
                 _destination = hitInfo.point;
                 _destination.y = _yPos;
+                
+                var toTargetDirection = (_destination - _transform.position).normalized;
+                var currentDirection = _transform.forward;
+                var cross1 = Vector3.Cross(currentDirection, toTargetDirection);
+                _clockwise = cross1.y/Mathf.Abs(cross1.y);
             }
         }
         
         var direction = _destination - _transform.position;
         var distance = direction.magnitude;
-        if (distance==0.0f)
-            return;
+        var angle = Vector3.Angle(_transform.forward, direction.normalized);
 
-        _speedCoefficient = (distance >= MaxSlowRadius) ? 1.0f : distance / MaxSlowRadius;
+        if (angle > minAngle)
+        {
+            _transform.Rotate(Vector3.up, _clockwise * Time.deltaTime * angularSpeed);
+        }
         
-        _transform.Translate(direction.normalized*speed*_speedCoefficient*Time.deltaTime);
+        if (distance > stopRadius)
+        {
+            _speedCoefficient = (distance >= slowRadius) ? 1.0f : distance / slowRadius;
+            _transform.Translate(Vector3.forward * speed * _speedCoefficient * Time.deltaTime);
+        }
     }
+
 }

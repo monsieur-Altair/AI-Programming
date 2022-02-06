@@ -5,13 +5,14 @@ using UnityEngine;
 public class Agent : MonoBehaviour
 {
     public float maxAccel;
-    [HideInInspector] public float rotation;
+    [HideInInspector] public float rotationAngle;
     public float maxSpeed;
-    [HideInInspector] public float orientation;
+    //[HideInInspector] public float orientationAngle;
     [HideInInspector] public Vector3 velocity;
+    public float maxAngularAccel;
 
-    private const float MinOrientation = 0.0f;
-    private const float MaxOrientation = 360.0f;
+    //private const float MinOrientation = 0.0f;
+   //private const float MaxOrientation = 360.0f;
         
     protected Steering steering;
 
@@ -32,18 +33,24 @@ public class Agent : MonoBehaviour
     public virtual void Update()
     {
         var displacement = velocity * Time.deltaTime;
-        orientation += rotation * Time.deltaTime;
+        //orientationAngle += rotationAngle * Time.deltaTime;
         
-        LimitOrientation();
+        //LimitOrientation();
+
+        if (rotationAngle != 0.0f)
+            _transform.Rotate(Vector3.up, rotationAngle * Time.deltaTime);
         
         _transform.Translate(displacement,Space.World);
-        _transform.rotation = new Quaternion();
-        _transform.Rotate(Vector3.up, orientation);
+        //_transform.rotation = new Quaternion();
+        //_transform.Rotate(Vector3.up, orientationAngle);
+        //Debug.Log(steering.angular);
+       
     }
 
     public virtual void LateUpdate()
     {
-        rotation += steering.angular * Time.deltaTime;
+        //Debug.Log(steering.angular);
+        //rotationAngle = steering.angular * Time.deltaTime;
         velocity += steering.linear * Time.deltaTime;
 
         if (velocity.magnitude > maxSpeed)
@@ -52,8 +59,8 @@ public class Agent : MonoBehaviour
             velocity *= maxSpeed;
         }
 
-        if (steering.angular == 0.0f)
-            rotation = 0.0f;
+        /*if (steering.angular == 0.0f)
+            rotationAngle = 0.0f;*/
 
         if (steering.linear.magnitude == 0.0f)
             velocity = Vector3.zero;
@@ -61,11 +68,11 @@ public class Agent : MonoBehaviour
         steering = new Steering();
     }
 
-    private void LimitOrientation()
+    /*private void LimitOrientation()
     {
-        if (orientation > MaxOrientation)
-            orientation -= MaxOrientation;
-        else if (orientation < MinOrientation)
-            orientation += MaxOrientation;
-    }
+        if (orientationAngle > MaxOrientation)
+            orientationAngle -= MaxOrientation;
+        else if (orientationAngle < MinOrientation)
+            orientationAngle += MaxOrientation;
+    }*/
 }

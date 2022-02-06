@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public struct Steering
+public class Steering
 {
     public float angular;
     public Vector3 linear;
 
-    /*public Steering()
+    public Steering()
     {
         angular = 0.0f;
         linear=new Vector3();
-    }*/
+    }
 }
