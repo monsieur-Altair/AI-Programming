@@ -7,7 +7,7 @@ namespace Behaviours
     public class Align : AgentBehaviour
     {
         private float _clockwise;
-        [SerializeField] private float angularSpeed;
+        public float angularSpeed;
         public float minAngle;
 
 

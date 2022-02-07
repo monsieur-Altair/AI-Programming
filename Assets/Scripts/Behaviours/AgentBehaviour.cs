@@ -22,7 +22,7 @@ namespace Behaviours
             return new Steering();
         }
 
-        public void SetTarget(GameObject newTarget)
+        public virtual void SetTarget(GameObject newTarget)
         {
             target = newTarget;
         }

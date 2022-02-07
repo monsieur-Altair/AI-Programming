@@ -10,6 +10,7 @@ namespace Behaviours
         public event Action<int> Approaching;
         public int Index { get; private set; }
         private static int _globalIndex=0;
+        
 
         public override void Awake()
         {
@@ -25,6 +26,12 @@ namespace Behaviours
                 OnApproaching(Index);
                 return new Steering();
             }
+            
+            //
+            
+            
+            //
+            
             return base.GetSteering();
         }
 

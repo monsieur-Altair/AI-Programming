@@ -26,8 +26,6 @@ public class RunnerCoach:MonoBehaviour
         _allAchievements = new Dictionary<int, Achievement>();
         foreach (var runner in _runners)
         {
-            Debug.Log(runner!=null);
-            Debug.Log(runner.Index);
             runner.Approaching += SetNewPoint;
             _allAchievements.Add(runner.Index,new Achievement(runner,-1));
             runner.SetTarget(_trip.GetStartPoint());
