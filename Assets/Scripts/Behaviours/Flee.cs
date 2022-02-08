@@ -2,15 +2,20 @@
 
 namespace Behaviours
 {
-    public class Flee : AgentBehaviour
+    public class Flee : Seek
     {
-        public override Steering GetSteering()
+        public override void Awake()
+        {
+            base.Awake();
+            AlignAlgorithm.EnableReversing();
+        }
+        /*public override Steering GetSteering()
         {
             var steering = new Steering();
-            steering.linear = transform.position - target.transform.position ;
-            steering.linear.Normalize();
-            steering.linear *= agent.maxAccel;
+            steering.linearSpeed = transform.position - target.transform.position ;
+            steering.linearSpeed.Normalize();
+            steering.linearSpeed *= agent.maxAccel;
             return steering;
-        }  
+        }  */
     }
 }

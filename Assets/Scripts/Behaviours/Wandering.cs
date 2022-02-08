@@ -2,31 +2,28 @@
 
 namespace Behaviours
 {
-    public class Wandering : Align
+    public class Wandering : Arrive
     {
-        public float maxSearchRadius;
-        public float wanderingDistance;
-        public float timeBetweenWandering;
+        [SerializeField] private float maxSearchRadius=30f;
+        [SerializeField] private float wanderingDistance=25f;
+        [SerializeField] private float timeBetweenWandering=1.5f;
         private float _currentTime;
-        private Arrive _arriveAlgorithm;
 
         public override void Awake()
         {
             base.Awake();
             target = new GameObject();
             target.transform.position = new Vector3(0.0f, transform.position.y, 0.0f);
-            _arriveAlgorithm = GetComponent<Arrive>();
-            _arriveAlgorithm.SetTarget(target);
+            base.SetTarget(target);
         }
 
         public override Steering GetSteering()
         {
-            var position = Transform.position;
+            var position = transform.position;
             _currentTime += Time.deltaTime;
             if (_currentTime < timeBetweenWandering)
             {
-                base.GetSteering();
-                return _arriveAlgorithm.GetSteering();
+                return base.GetSteering();
             }
 
             _currentTime = 0.0f;
@@ -35,8 +32,8 @@ namespace Behaviours
             var targetPosition = new Vector3(randomX, 0.0f, randomZ).normalized*wanderingDistance;
             target.transform.position = new Vector3(targetPosition.x, position.y, targetPosition.z);
 //            Debug.Log(target.transform.position);
-            base.GetSteering();
-            return _arriveAlgorithm.GetSteering();
+            
+            return base.GetSteering();
         }
 
     }

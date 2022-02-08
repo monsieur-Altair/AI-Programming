@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Steering
 {
-    public Vector3 linear;
+    public float linearSpeed;
 
     public Steering()
     {
-        linear=new Vector3();
+        linearSpeed=0.0f;
     }
 }

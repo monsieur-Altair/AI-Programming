@@ -39,7 +39,7 @@ namespace Behaviours
                 {
                     base.SetTarget(_firstTarget);
                     _isSwappedToTemporary = false;
-                    Debug.Log("approached");
+                    //Debug.Log("approached");
                 }
                 else
                 {
@@ -65,13 +65,13 @@ namespace Behaviours
                 {
                     return;
                 }
-                //get perpendicular vector to current forward vector = left offset 
+                //get perpendicular vector to current forward vector = left offset (it depends on cross product) 
                 var hitPoint = hitInfo.point;
                 _offsetLength = (hitInfo.distance > avoidingRadius) ? maxOffsetLength : hitInfo.distance;
                 var newTargetOffset = Vector3.Cross(transform.forward, Vector3.up).normalized;
                 var targetPoint = hitPoint + newTargetOffset.normalized * _offsetLength;
                 _temporaryTarget.transform.position = targetPoint;
-                Debug.DrawRay( hitPoint,newTargetOffset.normalized * _offsetLength,Color.black,0.5f);
+                Debug.DrawRay( hitPoint,newTargetOffset.normalized * _offsetLength,Color.black,2);
                 SwapTarget();
                 _isSwappedToTemporary = true;
             }
@@ -82,68 +82,8 @@ namespace Behaviours
         {
             if (_isSwappedToTemporary == false)
             {
-                //target = _temporaryTarget;
                 base.SetTarget(_temporaryTarget);
-                Debug.Log("Swapped");
             }
         }
-        
-        /*private void LaunchRays()
-        {
-            var currentPos = transform.position;
-            var rightTargetPoint=Vector3.zero;
-            var leftTargetPoint=Vector3.zero;
-            
-            Debug.DrawRay( transform.TransformPoint(_rightOffset),transform.forward*avoidingRadius,Color.black);
-            Debug.DrawRay( transform.TransformPoint(-_rightOffset),transform.forward*avoidingRadius,Color.black);
-            
-            if (Physics.Raycast(transform.TransformPoint(_rightOffset), 
-                transform.forward,
-                out var hitInfoRight, 
-                avoidingRadius))
-            {
-                _isRight = true;
-                //get perpendicular vector to current forward vector = offset 
-                var newTargetOffset = Vector3.Cross(transform.forward, Vector3.up).normalized;
-                leftTargetPoint = hitInfoRight.transform.position + newTargetOffset.normalized * OffsetLength;
-                _temporaryTarget.transform.position = leftTargetPoint;
-            }
-            
-            if (Physics.Raycast(transform.TransformPoint(-_rightOffset), 
-                transform.forward, 
-                out var hitInfoLeft,
-                avoidingRadius))
-            {
-                _isLeft = true;
-                var newTargetOffset = -1 * Vector3.Cross(transform.forward, Vector3.up).normalized;
-                rightTargetPoint = hitInfoLeft.transform.position + newTargetOffset.normalized * OffsetLength;
-                
-                _temporaryTarget.transform.position = rightTargetPoint;
-            }
-            
-            if (_isLeft && _isRight)
-            {
-                if (_isPreviousRight)
-                {
-                    _temporaryTarget.transform.position = rightTargetPoint;
-                    _isPreviousRight=true;
-                }
-                else
-                {
-                    _temporaryTarget.transform.position = leftTargetPoint;
-                    _isPreviousRight = false;
-                }
-            }
-
-            _isPreviousRight = (_temporaryTarget.transform.position == rightTargetPoint);
-            _isLeft = _isRight = false;
-            
-            //если левый сработал, смещаем вправо и наобоорот, если оба, то туда, где предыдущий
-
-        }*/
-        
-        
-        
-        
     }
 }

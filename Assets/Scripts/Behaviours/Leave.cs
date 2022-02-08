@@ -2,11 +2,10 @@
 
 namespace Behaviours
 {
-    public class Leave : AgentBehaviour
+    public class Leave : Flee
     {
         public float escapeRadius;
         public float dangerRadius;
-        private const float TimeToTarget = 0.1f;
 
         public override Steering GetSteering()
         {
@@ -14,24 +13,14 @@ namespace Behaviours
             var direction = transform.position - target.transform.position;
             var distance = direction.magnitude;
 
-            if (distance > dangerRadius)
-                return steering;
-
-            var reduce = (distance < escapeRadius) ? 0.0f : (agent.maxSpeed * distance / dangerRadius);
-            var targetSpeed = agent.maxSpeed - reduce;
-            
-
-            var desiredVelocity = direction;
-            desiredVelocity.Normalize();
-            desiredVelocity *= targetSpeed;
-
-            steering.linear = (desiredVelocity - agent.velocity)/TimeToTarget;
-            if (steering.linear.magnitude > agent.maxAccel)
+            if (distance > escapeRadius)
+                steering.linearSpeed = 0.0f;
+            else
             {
-                steering.linear.Normalize();
-                steering.linear *= agent.maxAccel;
+                var coeff= (distance <= dangerRadius) ? 1.0f : (dangerRadius/distance);
+                steering.linearSpeed = coeff*agent.MaxSpeed;
             }
-
+            
             return steering;
         }
     }

@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     private Transform _transform;
     private Vector3 _destination;
     private float _yPos;
+    [SerializeField] private float maxSpeed=30.0f;
     [SerializeField] private float speed;
     [SerializeField] float slowRadius = 7.5f;
     [SerializeField] float stopRadius = 0.3f;
@@ -25,6 +26,7 @@ public class Character : MonoBehaviour
         _transform = transform;
         _destination=_transform.position;
         _yPos = _destination.y;
+        speed = maxSpeed;
     }
 
     private void Update()
