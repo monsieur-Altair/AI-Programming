@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     
     
 
-        private void Awake()
+    private void Awake()
     {
         _mainCamera=Camera.main;
         _transform = transform;
@@ -28,6 +28,37 @@ public class Character : MonoBehaviour
     }
 
     private void Update()
+    {
+        CheckInput();
+        
+        var direction = _destination - _transform.position;
+       
+        RotateTo(direction);
+        
+        TranslateTo(direction);
+    }
+
+    private void RotateTo(Vector3 direction)
+    {
+        var angle = Vector3.Angle(_transform.forward, direction.normalized);
+
+        if (angle > minAngle)
+        {
+            _transform.Rotate(Vector3.up, _clockwise * Time.deltaTime * angularSpeed);
+        }
+    }
+
+    private void TranslateTo(Vector3 direction)
+    {
+        var distance = direction.magnitude;
+        if (distance > stopRadius)
+        {
+            _speedCoefficient = (distance >= slowRadius) ? 1.0f : distance / slowRadius;
+            _transform.Translate(Vector3.forward * speed * _speedCoefficient * Time.deltaTime);
+        }
+    }
+    
+    private void CheckInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -42,21 +73,6 @@ public class Character : MonoBehaviour
                 var cross1 = Vector3.Cross(currentDirection, toTargetDirection);
                 _clockwise = cross1.y/Mathf.Abs(cross1.y);
             }
-        }
-        
-        var direction = _destination - _transform.position;
-        var distance = direction.magnitude;
-        var angle = Vector3.Angle(_transform.forward, direction.normalized);
-
-        if (angle > minAngle)
-        {
-            _transform.Rotate(Vector3.up, _clockwise * Time.deltaTime * angularSpeed);
-        }
-        
-        if (distance > stopRadius)
-        {
-            _speedCoefficient = (distance >= slowRadius) ? 1.0f : distance / slowRadius;
-            _transform.Translate(Vector3.forward * speed * _speedCoefficient * Time.deltaTime);
         }
     }
 

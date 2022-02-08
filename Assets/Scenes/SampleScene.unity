@@ -1455,8 +1455,8 @@ GameObject:
   - component: {fileID: 764782939}
   - component: {fileID: 764782935}
   - component: {fileID: 764782940}
-  - component: {fileID: 764782941}
   - component: {fileID: 764782942}
+  - component: {fileID: 764782943}
   m_Layer: 0
   m_Name: Pursuer
   m_TagString: Untagged
@@ -1514,19 +1514,6 @@ MonoBehaviour:
   target: {fileID: 1951083066}
   targetRadius: 1
   slowRadius: 5
---- !u!114 &764782941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764782933}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ca33a404c542fabd2198fab61d4af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1951083066}
 --- !u!114 &764782942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,6 +1529,21 @@ MonoBehaviour:
   target: {fileID: 1951083066}
   angularSpeed: 180
   minAngle: 2
+--- !u!114 &764782943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764782933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3f26793fd44210b03ef715297a80d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  bodyRadius: 1
+  avoidingRadius: 3
 --- !u!1 &942968554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +1971,7 @@ GameObject:
   - component: {fileID: 1067392919}
   - component: {fileID: 1067392918}
   - component: {fileID: 1067392920}
+  - component: {fileID: 1067392921}
   m_Layer: 0
   m_Name: Rotationer
   m_TagString: Untagged
@@ -2026,6 +2029,21 @@ MonoBehaviour:
   target: {fileID: 1951083066}
   angularSpeed: 180
   minAngle: 2
+--- !u!114 &1067392921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067392916}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3f26793fd44210b03ef715297a80d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  bodyRadius: 2
+  avoidingRadius: 5
 --- !u!1 &1115344436
 GameObject:
   m_ObjectHideFlags: 0

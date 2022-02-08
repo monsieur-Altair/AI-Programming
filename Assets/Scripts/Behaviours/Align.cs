@@ -30,8 +30,16 @@ namespace Behaviours
             _clockwise = cross1.y/Mathf.Abs(cross1.y);
 
             var rotationAngle = Vector3.Angle(currentDirection, toTargetDirection);
-
-            agent.rotationAngle = rotationAngle > minAngle ? angularSpeed * _clockwise : 0.0f;
+            Debug.Log(rotationAngle);
+            if (rotationAngle > minAngle)
+            {
+                agent.rotationAngle = angularSpeed * _clockwise;
+            }
+            else
+            {
+                agent.rotationAngle = 0.0f;
+                transform.LookAt(target.transform);
+            }
             //not work with steering.angular
             return steering;
         }

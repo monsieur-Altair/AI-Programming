@@ -34,6 +34,7 @@ public class Agent : MonoBehaviour
             _transform.Rotate(Vector3.up, rotationAngle * Time.deltaTime);
         
         _transform.Translate(displacement,Space.World);
+        //_transform.Translate(transform.forward*maxSpeed*Time.deltaTime,Space.World);
 
     }
 
