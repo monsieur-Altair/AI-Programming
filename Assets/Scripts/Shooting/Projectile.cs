@@ -10,7 +10,7 @@ namespace Shooting
         private Vector3 _direction;
         private float _speed;
         private float _timeElapsed;
-        private float minHeight = 6.74f;
+        private float _minHeight;
         public event Action<Projectile> Fall;
         public bool isBlue;
 
@@ -22,14 +22,14 @@ namespace Shooting
             
             pos += Physics.gravity * _timeElapsed * _timeElapsed / 2.0f;
             transform.position = pos;
-            if (transform.position.y < minHeight)
+            if (transform.position.y <= _minHeight)
             {
                 OnFall(this);
             }
             
         }
 
-        public void Launch(Vector3 pos, Vector3 direction, float speed)
+        public void Launch(Vector3 pos, Vector3 direction, float speed, float height=0.0f)
         {
             _direction = direction.normalized;
             _firePos = pos;
@@ -37,9 +37,9 @@ namespace Shooting
             transform.position = _firePos;
             _timeElapsed = 0.0f;
             
-            var fallsPos = GetLandPos();
+            var fallsPos = GetLandPos(height);
             var color = isBlue ? Color.blue : Color.red;
-            Debug.DrawRay(fallsPos, Vector3.up * 4, color, 1.5f);
+            Debug.DrawRay(fallsPos, Vector3.up * 5, color, 3f);
         }
 
         protected virtual void OnFall(Projectile obj)
@@ -47,11 +47,11 @@ namespace Shooting
             Fall?.Invoke(obj);
         }
         
-        private float GetLandingTime(float height)
+        private float GetLandingTime()
         {
             var pos = transform.position;
             var valueInt = (_direction.y * _direction.y) * _speed * _speed;
-            valueInt -= Physics.gravity.y * 2 * (pos.y - height);
+            valueInt -= Physics.gravity.y * 2 * (pos.y - _minHeight);
             valueInt = Mathf.Sqrt(valueInt);
             var valueAdd = (-_direction.y) * _speed;
             var valueSub = valueAdd;
@@ -69,13 +69,14 @@ namespace Shooting
 
         private Vector3 GetLandPos(float height = 0.0f)
         {
+            _minHeight = height;
             var landingPos = Vector3.zero;
-            var time = GetLandingTime(minHeight);
+            var time = GetLandingTime();
             if (time<0.0f)
             {
                 return Vector3.zero;
             }
-            landingPos.y = height;
+            landingPos.y = _minHeight;
             landingPos.x = _firePos.x + _direction.x * _speed * time;
             landingPos.z = _firePos.z + _direction.z * _speed * time;
             return landingPos;
@@ -104,7 +105,7 @@ namespace Shooting
             }
             else
             {
-                time = time1 < 0 ? time0 : Mathf.Min(time0, time1);
+                time = time1 < 0 ? time0 : Mathf.Max(time0, time1);
             }
 
             res = 2 * direction - Physics.gravity * time * time;

@@ -28,11 +28,10 @@ public class Agent : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.DrawRay(transform.position,transform.forward*8,Color.black);
+        //Debug.DrawRay(transform.position,transform.forward*8,Color.black);
         if (rotationAngle != 0.0f)
             _transform.Rotate(Vector3.up, rotationAngle * Time.deltaTime);
         
-        //_transform.Translate(displacement,Space.World);
         _transform.Translate(transform.forward*speed*Time.deltaTime,Space.World);
 
     }
