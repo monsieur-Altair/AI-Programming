@@ -37,11 +37,11 @@ namespace Behaviours
         public override Steering GetSteering()
         {
             LaunchRays();
-
-            if (_isOnGround == false)
-                return new Steering();
             
-            return base.GetSteering();
+            var steering = base.GetSteering();
+            if (_isOnGround == false)
+                steering.Weight = 0.0f;
+            return steering;
         }
 
         private void LaunchRays()

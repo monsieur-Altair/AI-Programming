@@ -12,8 +12,13 @@ namespace Behaviours
         public override void Awake()
         {
             base.Awake();
-            target = new GameObject();
-            target.transform.position = new Vector3(0.0f, transform.position.y, 0.0f);
+            target = new GameObject
+            {
+                transform =
+                {
+                    position = new Vector3(0.0f, transform.position.y, 0.0f)
+                }
+            };
             base.SetTarget(target);
         }
 

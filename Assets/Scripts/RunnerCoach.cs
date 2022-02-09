@@ -11,8 +11,8 @@ public class RunnerCoach:MonoBehaviour
 
         public Achievement(Behaviours.Runner runner, int index)
         {
-            this.Runner = runner;
-            this.CurrentPointIndex = index;
+            Runner = runner;
+            CurrentPointIndex = index;
         }
     }
     

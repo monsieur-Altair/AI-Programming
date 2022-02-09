@@ -12,7 +12,6 @@ public class Trip : MonoBehaviour
             index = 0;
         return points[index];
     }
-    
     public GameObject GetStartPoint()
     {
         return points[0];

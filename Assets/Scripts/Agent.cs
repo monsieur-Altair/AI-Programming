@@ -4,52 +4,54 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
-    [HideInInspector] public float rotationAngle;
-    protected float speed;
     [SerializeField] private float maxSpeed;
     public float MaxSpeed { private set; get; }
 
-    protected Steering steering;
-
+    private Steering _steering;
     private Transform _transform;
+    private float _rotationAngle;
+    private float _speed;
+    private float _coefficient;
     
     private void Start()
     {
-        steering = new Steering();
+        _steering = new Steering();
         _transform = GetComponent<Transform>();
         MaxSpeed = maxSpeed;
-        speed = MaxSpeed;
+        _speed = MaxSpeed;
     }
 
-    public void SetSteering(Steering steering)
+    public void SetSteering(Steering steering1)
     {
-        this.steering = steering;
+        this._steering = steering1;
     }
 
     public virtual void Update()
     {
         //Debug.DrawRay(transform.position,transform.forward*8,Color.black);
-        if (rotationAngle != 0.0f)
-            _transform.Rotate(Vector3.up, rotationAngle * Time.deltaTime);
-        
-        _transform.Translate(transform.forward*speed*Time.deltaTime,Space.World);
+        if (_rotationAngle != 0.0f)
+            _transform.Rotate(Vector3.up, _rotationAngle * _coefficient * Time.deltaTime);
+
+        _transform.Translate(transform.forward * _coefficient * _speed * Time.deltaTime, Space.World);
 
     }
 
     public virtual void LateUpdate()
     {
-        speed = steering.linearSpeed;
-
-        if (speed > MaxSpeed)
+        _speed = _steering.LinearSpeed;
+        _coefficient = _steering.Weight;
+        _rotationAngle = _steering.RotationAngle;
+        
+        if (_speed > MaxSpeed)
         {
-            speed = MaxSpeed;
+            _speed = MaxSpeed;
         }
 
-        steering = new Steering();
+        _steering = new Steering();
     }
 
     public void EnableMaxSpeed()
     {
-        speed = MaxSpeed;
+        _speed = MaxSpeed;
     }
 }

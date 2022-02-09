@@ -16,12 +16,12 @@ namespace Behaviours
 
             if (distance < targetRadius)
             {
-                steering.linearSpeed = 0.0f;
+                steering.LinearSpeed = 0.0f;
             }
             else
             {
-                var agentSpeed = (distance > slowRadius) ? agent.MaxSpeed : (agent.MaxSpeed * distance / slowRadius);
-                steering.linearSpeed = agentSpeed;
+                var agentSpeed = (distance > slowRadius) ? Agent.MaxSpeed : (Agent.MaxSpeed * distance / slowRadius);
+                steering.LinearSpeed = agentSpeed;
             }
             
 //            Debug.Log(steering.linearSpeed);

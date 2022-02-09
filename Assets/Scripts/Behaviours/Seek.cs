@@ -19,9 +19,9 @@ namespace Behaviours
         public override Steering GetSteering()
         {
             var steering = AlignAlgorithm.GetSteering();
-            
+            steering.LinearSpeed = Agent.MaxSpeed;
+            //Debug.Log(steering.LinearSpeed+" "+steering.RotationAngle+" "+steering.Weight);
             //var steering = new Steering();
-            steering.linearSpeed = agent.MaxSpeed;
             return steering;
         }
 

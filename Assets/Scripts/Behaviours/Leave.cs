@@ -14,11 +14,11 @@ namespace Behaviours
             var distance = direction.magnitude;
 
             if (distance > escapeRadius)
-                steering.linearSpeed = 0.0f;
+                steering.LinearSpeed = 0.0f;
             else
             {
                 var coeff= (distance <= dangerRadius) ? 1.0f : (dangerRadius/distance);
-                steering.linearSpeed = coeff*agent.MaxSpeed;
+                steering.LinearSpeed = coeff*Agent.MaxSpeed;
             }
             
             return steering;
