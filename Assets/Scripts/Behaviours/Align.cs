@@ -7,7 +7,7 @@ namespace Behaviours
         private float _clockwise;
         [SerializeField] private float angularSpeed;
         [SerializeField] private float minAngle;
-        private float _minDistance = 1.5f;
+        //private float _minDistance = 1.5f;
         private bool _isReversing;
         protected Transform Transform;
         private Vector3 _toTarget;
