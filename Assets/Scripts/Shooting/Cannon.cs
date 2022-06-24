@@ -11,10 +11,10 @@ namespace Shooting
 
         private void Awake()
         {
-            projectileRed.Fall += ReLaunchRed;
+            projectileRed.Fallen += ReLaunchRed;
             ReLaunchRed(projectileRed);
 
-            projectileBlue.Fall += ReLaunchBlue;
+            projectileBlue.Fallen += ReLaunchBlue;
             ReLaunchBlue(projectileBlue);
         }
 

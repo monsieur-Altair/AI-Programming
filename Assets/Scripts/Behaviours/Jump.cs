@@ -21,7 +21,7 @@ namespace Behaviours
             _ownHeight = GetComponent<CapsuleCollider>().height / 2.0f;
             base.SetTarget(target);
             _projectileBehaviour = gameObject.AddComponent<Projectile>();
-            _projectileBehaviour.Fall += EnableBaseAlgorithm;
+            _projectileBehaviour.Fallen += EnableBaseAlgorithm;
             _projectileBehaviour.enabled = false;
             _landPos=Vector3.zero;
         }

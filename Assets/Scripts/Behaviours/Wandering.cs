@@ -5,8 +5,11 @@ namespace Behaviours
     public class Wandering : Arrive
     {
         [SerializeField] private float maxSearchRadius=30f;
+
         [SerializeField] private float wanderingDistance=25f;
+
         [SerializeField] private float timeBetweenWandering=1.5f;
+
         private float _currentTime;
 
         public override void Awake()
@@ -32,6 +35,7 @@ namespace Behaviours
             }
 
             _currentTime = 0.0f;
+            
             var randomX = Random.Range(-maxSearchRadius, maxSearchRadius);
             var randomZ = Random.Range(-maxSearchRadius, maxSearchRadius);
             var targetPosition = new Vector3(randomX, 0.0f, randomZ).normalized*wanderingDistance;

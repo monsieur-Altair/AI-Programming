@@ -34,8 +34,8 @@ public class RunnerCoach:MonoBehaviour
 
     private void SetNewPoint(int runnerIndex)
     {
-        var achievement=_allAchievements[runnerIndex];
-        var newPoint = _trip.GetNewPoint(achievement.CurrentPointIndex);
+        Achievement achievement=_allAchievements[runnerIndex];
+        GameObject newPoint = _trip.GetNewPoint(achievement.CurrentPointIndex);
         achievement.Runner.SetTarget(newPoint);
         var newPointIndex= ++achievement.CurrentPointIndex;
         if (newPointIndex > _trip.Count()-1)

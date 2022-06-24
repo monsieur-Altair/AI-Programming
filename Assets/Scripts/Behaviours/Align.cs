@@ -28,18 +28,18 @@ namespace Behaviours
         {
             var steering = new Steering();
 
-            var destination = target.transform.position;
-            var toTarget = (destination - _transform.position).normalized;
+            Vector3 destination = target.transform.position;
+            Vector3 toTarget = (destination - _transform.position).normalized;
             if (_isReversing)
                 toTarget *= -1;//toTarget=fromTarget
             
             //var distance = Vector3.Distance(destination, Transform.position);
             //var coeff = (distance > _minDistance) ? 1.0f : (_minDistance / distance);
-            var currentDirection = _transform.forward;
-            var cross1 = Vector3.Cross(currentDirection, toTarget);
+            Vector3 currentDirection = _transform.forward;
+            Vector3 cross1 = Vector3.Cross(currentDirection, toTarget);
             _clockwise = cross1.y/Mathf.Abs(cross1.y);
 
-            var rotationAngle = Vector3.Angle(currentDirection, toTarget);
+            float rotationAngle = Vector3.Angle(currentDirection, toTarget);
             //Debug.Log(rotationAngle);
             if (rotationAngle > minAngle)
             {

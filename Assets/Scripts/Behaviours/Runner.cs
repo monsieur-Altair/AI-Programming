@@ -26,12 +26,6 @@ namespace Behaviours
                 OnApproaching(Index);
                 return new Steering();
             }
-            
-            //
-            
-            
-            //
-            
             return base.GetSteering();
         }
 

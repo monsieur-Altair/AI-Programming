@@ -6,6 +6,7 @@ namespace Behaviours
     {
         protected Align AlignAlgorithm;
         [SerializeField] private float angularSpeed=360f;
+
         [SerializeField] private float minAngle=2;
 
         public override void Awake()
@@ -20,8 +21,6 @@ namespace Behaviours
         {
             var steering = AlignAlgorithm.GetSteering();
             steering.LinearSpeed = Agent.MaxSpeed;
-            //Debug.Log(steering.LinearSpeed+" "+steering.RotationAngle+" "+steering.Weight);
-            //var steering = new Steering();
             return steering;
         }
 

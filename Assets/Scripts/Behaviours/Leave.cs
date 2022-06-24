@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-
+﻿
 namespace Behaviours
 {
     public class Leave : Flee
     {
         public float escapeRadius;
+
         public float dangerRadius;
 
         public override Steering GetSteering()
@@ -20,7 +20,7 @@ namespace Behaviours
                 var coeff= (distance <= dangerRadius) ? 1.0f : (dangerRadius/distance);
                 steering.LinearSpeed = coeff*Agent.MaxSpeed;
             }
-            
+
             return steering;
         }
     }

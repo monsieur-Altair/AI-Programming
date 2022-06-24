@@ -65,7 +65,7 @@ public class Character : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             var ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var hitInfo))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
                 _destination = hitInfo.point;
                 _destination.y = _yPos;
