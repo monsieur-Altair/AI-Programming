@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Health Bar
-  m_Shader: {fileID: 4800000, guid: f991da0656964be4489668f751dd6d70, type: 3}
+  m_Name: Own Lit
+  m_Shader: {fileID: 4800000, guid: dceae8dc5480aa84c8192c13f2ba8d43, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 6
@@ -40,14 +40,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _HealTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _HealthTex:
-        m_Texture: {fileID: 2800000, guid: 619393d08ea746b4d89e19a2e23493e7, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 02f02ed83d7b78b48ba5efef27c2391b, type: 3}
         m_Scale: {x: 14.94, y: 7.93}
@@ -71,13 +63,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _End: 0.82
+    - _FresnelPower: 0.29
+    - _Gloss: 0.56
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Health: 55
-    - _MaxThreshold: 100
     - _Metallic: 0
-    - _MinThreshold: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -89,9 +80,8 @@ Material:
     - _Wave: 0.77
     - _ZWrite: 1
     m_Colors:
-    - _BorderColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
-    - _Color: {r: 0.4770857, g: 1, b: 0, a: 1}
-    - _ColorA: {r: 1, g: 0.030271407, b: 0, a: 1}
-    - _ColorB: {r: 0, g: 1, b: 0.15034914, a: 1}
+    - _Color: {r: 0.3554864, g: 0, b: 1, a: 1}
+    - _ColorA: {r: 0.5943396, g: 0.5943396, b: 0.25455678, a: 1}
+    - _ColorB: {r: 0.222388, g: 0.22016731, b: 0.5377358, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
