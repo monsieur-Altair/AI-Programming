@@ -63,6 +63,7 @@ Shader "Fresnel"
                 fresnel = (fresnel + _FresnelPower) * _FresnelPower;
                 float4 fresnelColor = fresnel * _Color.xyzw;
 
+                //
                 return fresnelColor;
             }
             ENDCG
