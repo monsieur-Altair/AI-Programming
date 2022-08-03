@@ -46,7 +46,7 @@ Shader "Testing1"
             float4 _ColorA;
             float4 _ColorB;
 
-            float _End;
+            float _End;////////////////////////////////
             float _Start;
 
             float InverseLerp(float a, float b, float v)
